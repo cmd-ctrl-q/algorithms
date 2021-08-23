@@ -9,25 +9,23 @@ type t struct {
 func (t *t) bubble() {
 
 	didSwap := false
-	// didSwap := true
-	i := 0
+	i := 1
 	for {
 
-		// if previous > current
-		if t.slice[i] > t.slice[i+1] {
+		// if prev > curr
+		if t.slice[i-1] > t.slice[i] {
 			// swap
 			temp := t.slice[i]
-			t.slice[i] = t.slice[i+1]
-			t.slice[i+1] = temp
+			t.slice[i] = t.slice[i-1]
+			t.slice[i-1] = temp
 			didSwap = true
 		}
 
 		// end of slice is reached
-		if i+2 == len(t.slice) {
-			fmt.Println(t.slice)
+		if i+1 == len(t.slice) {
 			// if there were swaps, continue
 			if didSwap {
-				i = 0
+				i = 1
 				didSwap = false
 				continue
 			} else {
@@ -43,6 +41,6 @@ func (t *t) bubble() {
 
 func main() {
 	t := t{[]int{12, 3, 45, 17, 7, 42}}
-	fmt.Println(t.slice)
 	t.bubble()
+	fmt.Println(t.slice)
 }
