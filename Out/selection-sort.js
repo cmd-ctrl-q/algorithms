@@ -15,34 +15,28 @@ E.g.
 function selectionSort(arr) {
 
     let len = arr.length; 
-    let found = false;
-    let i, j, minValue, indexOfMinValue; 
+    let i, j, minIndex;
 
     // loop through unsorted array 
     for (i = 0; i < len; i++) {
 
-        // save the current value of arr[i]
-        minValue = arr[i]; 
+        // save the current index 
+        minIndex = i; 
 
         // loop from current position + 1 of i to the end of same array, looking for the smallest element
         for (j = i + 1; j < len; j++) {
 
-            // check if current value is less than min, if so, change min to current value in array
-            if (arr[j] < minValue) {
-                minValue = arr[j]; 
-                indexOfMinValue = j;
-                found = true;
+            // check if value of current index is less than value of minIndex, 
+            if (arr[j] < arr[minIndex]) {
+                // found smaller value in current index j; change the index of the minimum value 
+                minIndex = j;
             }
         }
 
-        if (found) {
-            // found the next minimum element in array; swap current value of arr[i] with the newly found value in arr[indexOfMinValue]
-            let temp = arr[i]; 
-            arr[i] = minValue;
-            arr[indexOfMinValue] = temp; 
-            // reset found to false 
-            found = false; 
-        } 
+        // swap 
+        let temp = arr[i]; 
+        arr[i] = arr[minIndex];
+        arr[minIndex] = temp; 
     }
 }
 
